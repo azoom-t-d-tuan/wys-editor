@@ -1,18 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <summernote
+      class="form-control"
+      name="summernote"
+      :model="content"
+      :config="config"
+      v-on:change="
+        (value) => {
+          content = value
+        }
+      "
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Summernote from './components/summernote'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    Summernote,
+  },
+  data() {
+    return {
+      content: null,
+      config: {
+        height: 230,
+        toolbar: [
+          // [groupName, [list of button]]
+          ['style', ['bold', 'italic', 'underline', 'clear']],
+          ['font', ['strikethrough', 'superscript', 'subscript']],
+          ['fontsize', ['fontsize']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['insert', ['gxcode']], // plugin: summernote-ext-codewrapper
+        ],
+      },
+    }
+  },
 }
 </script>
 
