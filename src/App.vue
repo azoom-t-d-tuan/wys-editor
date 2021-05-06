@@ -1,18 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <text-editor
+      class="text-editor"
+      v-model="content"
+      :options="editorOptions"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TextEditor from './components/text-editor'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    TextEditor,
+  },
+  data() {
+    return {
+      content: '',
+      editorOptions: {
+        modules: {
+          toolbar: [['bold', 'italic', 'underline', 'strike'], ['blockquote']],
+        },
+      },
+    }
+  },
 }
 </script>
 
@@ -23,6 +36,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+.text-editor {
+  height: 375px;
+  width: 50%;
+  margin: 0 auto;
 }
 </style>
