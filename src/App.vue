@@ -5,9 +5,9 @@
       name="summernote"
       :model="content"
       :config="config"
-      v-on:change="
+      @change="
         (value) => {
-          content = value
+          content = value;
         }
       "
     />
@@ -15,10 +15,9 @@
 </template>
 
 <script>
-import Summernote from './components/summernote'
-
+import Summernote from "./components/summernote.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Summernote,
   },
@@ -29,17 +28,31 @@ export default {
         height: 230,
         toolbar: [
           // [groupName, [list of button]]
-          ['style', ['bold', 'italic', 'underline', 'clear']],
-          ['font', ['strikethrough', 'superscript', 'subscript']],
-          ['fontsize', ['fontsize']],
-          ['color', ['color']],
-          ['para', ['ul', 'ol', 'paragraph']],
-          ['insert', ['gxcode']], // plugin: summernote-ext-codewrapper
+          ["style", ["bold", "italic", "underline", "clear"]],
+          ["font", ["strikethrough", "superscript", "subscript"]],
+          ["fontsize", ["fontsize"]],
+          ["fontname", ["fontname"]],
+          ["table", ["table"]],
+          ["insert", ["link", "picture", "video", "hr"]],
+          ["color", ["color"]],
+          ["para", ["ul", "ol", "paragraph"]],
+          "undo",
+          "redo",
         ],
+        fontNames: [
+          "Arial",
+          "Arial Black",
+          "Comic Sans MS",
+          "Courier New",
+          "Merriweather",
+          "Roboto",
+        ],
+        fontNamesIgnoreCheck: ["Merriweather", "Roboto"],
+        placeholder: "Write here...",
       },
-    }
+    };
   },
-}
+};
 </script>
 
 <style>
